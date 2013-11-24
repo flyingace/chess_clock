@@ -1,0 +1,370 @@
+#main #setup-panel, #main #clocks-panel {
+  -webkit-transform: translatez(0);
+  -moz-transform: translatez(0);
+  -ms-transform: translatez(0);
+  -o-transform: translatez(0);
+  transform: translatez(0); }
+
+.clearfix:after {
+  clear: both; }
+
+@keyframes setup-visible {
+  0% {
+    top: -100%; }
+
+  100% {
+    top: 0%; } }
+
+@-moz-keyframes setup-visible {
+  0% {
+    top: -100%; }
+
+  100% {
+    top: 0%; } }
+
+@-webkit-keyframes setup-visible {
+  0% {
+    top: -100%; }
+
+  100% {
+    top: 0%; } }
+
+@keyframes clocks-visible {
+  0% {
+    top: 0%; }
+
+  100% {
+    top: -100%; } }
+
+@-moz-keyframes clocks-visible {
+  0% {
+    top: 0%; }
+
+  100% {
+    top: -100%; } }
+
+@-webkit-keyframes clocks-visible {
+  0% {
+    top: 0%; }
+
+  100% {
+    top: -100%; } }
+
+@font-face {
+  font-family: 'monologue_black_ssiblack';
+  src: url("../fonts/monologue_black/monologue_black_ssi_black-webfont.eot");
+  src: url("../fonts/monologue_black/monologue_black_ssi_black-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/monologue_black/monologue_black_ssi_black-webfont.woff") format("woff"), url("../fonts/monologue_black/monologue_black_ssi_black-webfont.ttf") format("truetype"), url("../fonts/monologue_black/monologue_black_ssi_black-webfont.svg#monologue_black_ssiblack") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'fontello';
+  src: url("../fonts/fontello/fontello.eot?38336672");
+  src: url("../fonts/fontello/fontello.eot?38336672#iefix") format("embedded-opentype"), url("../fonts/fontello/fontello.woff?38336672") format("woff"), url("../fonts/fontello/fontello.ttf?38336672") format("truetype"), url("../fonts/fontello/fontello.svg?38336672#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent; }
+
+html {
+  width: 100%;
+  height: 100%; }
+
+body {
+  font-family: 'monologue_black_ssiblack';
+  background-color: #EEEEEE;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0; }
+
+#main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto 0 auto;
+  overflow: hidden; }
+  #main #setup-panel {
+    position: relative;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+    background: url("../img/white_stripe.png"), linear-gradient(to right, black 0%, #8c8c8c 65%, white 100%); }
+    #main #setup-panel h1 {
+      font-size: 8.5vh;
+      font-weight: normal;
+      color: white;
+      text-align: center;
+      letter-spacing: 2px;
+      background: linear-gradient(to right, rgba(63, 63, 63, 0.5) 0%, rgba(0, 0, 0, 0.75) 30%, rgba(0, 0, 0, 0.75) 70%, rgba(63, 63, 63, 0.5) 100%);
+      width: 100%;
+      height: 12vh;
+      margin: 0;
+      padding: .7vh 0 0 0; }
+    #main #setup-panel h3 {
+      font-size: 6vh;
+      height: 10vh;
+      margin: 0;
+      display: none; }
+    #main #setup-panel #play-times-wrap {
+      width: 100%;
+      height: 44vh;
+      margin: 0 0 2vh 0;
+      overflow: hidden;
+      clear: both; }
+      #main #setup-panel #play-times-wrap .time-display {
+        float: left;
+        width: 45vw;
+        height: 36vh;
+        margin: 4vh 2.5vw;
+        background-color: white; }
+        #main #setup-panel #play-times-wrap .time-display .time-incrementer {
+          float: left;
+          border: none;
+          height: 36vh;
+          width: 15vw; }
+          #main #setup-panel #play-times-wrap .time-display .time-incrementer .increment-button {
+            font-size: 7vh;
+            text-align: center;
+            border-right: 1px solid black;
+            height: 8vh;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none; }
+        #main #setup-panel #play-times-wrap .time-display .time-incrementer:last-of-type .increment-button {
+          border: none; }
+        #main #setup-panel #play-times-wrap .time-display input[type=number] {
+          font-size: 15vh;
+          text-align: center;
+          width: 15vw;
+          height: 20vh;
+          border: none;
+          background: none; }
+        #main #setup-panel #play-times-wrap .time-display input[type=number]::-webkit-inner-spin-button,
+        #main #setup-panel #play-times-wrap .time-display input[type=number]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0; }
+      #main #setup-panel #play-times-wrap #p1.time-display {
+        margin-right: 2vw; }
+      #main #setup-panel #play-times-wrap #p2 {
+        margin-left: 2vw;
+        background-color: black;
+        color: white; }
+        #main #setup-panel #play-times-wrap #p2 .increment-button {
+          border-color: white; }
+        #main #setup-panel #play-times-wrap #p2 input[type=number] {
+          color: white; }
+    #main #setup-panel #mode-wrap {
+      width: 42vw;
+      height: 25vh;
+      float: left;
+      font-size: 2.5vw;
+      padding: 0 2vw 0 3vw; }
+      #main #setup-panel #mode-wrap .menu-wrapper {
+        margin-bottom: 5vh; }
+        #main #setup-panel #mode-wrap .menu-wrapper label {
+          display: inline-block;
+          width: 16vw;
+          text-align: right; }
+        #main #setup-panel #mode-wrap .menu-wrapper select {
+          width: 19.2vw;
+          -webkit-appearance: none;
+          font-family: inherit;
+          border-radius: 0;
+          border: 0;
+          outline: 0;
+          padding: 0 .5vw;
+          margin: 0;
+          font-size: 2.5vw; }
+      #main #setup-panel #mode-wrap .hidden {
+        display: none; }
+    #main #setup-panel #settings-wrap {
+      height: 25vh;
+      float: left;
+      font-size: 2.5vw;
+      padding: 0 3vw 0 2vw; }
+      #main #setup-panel #settings-wrap label {
+        display: inline-block; }
+      #main #setup-panel #settings-wrap input[type="checkbox"] {
+        font-family: "fontello";
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        font-size: 2.5vw;
+        display: inline-block;
+        text-decoration: inherit;
+        width: 1em;
+        margin: 0 .2em 3.5vh 0;
+        text-align: left;
+        -webkit-appearance: none;
+        /* For safety - reset parent styles, that can break glyph codes*/
+        font-variant: normal;
+        text-transform: none;
+        border: 0;
+        outline: 0; }
+      #main #setup-panel #settings-wrap input[type="checkbox"]:before {
+        content: '\e804'; }
+      #main #setup-panel #settings-wrap input[type="checkbox"]:checked:before {
+        content: '\e801'; }
+    #main #setup-panel #buttons-wrap {
+      height: 19vh;
+      clear: left;
+      padding: 0 3vw 3vw 3vw; }
+      #main #setup-panel #buttons-wrap .setup-button {
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        cursor: pointer;
+        float: left;
+        margin: 5px;
+        padding: 1.5vh 0 0 0;
+        min-height: 32px;
+        min-width: 68px;
+        height: 8vh;
+        width: 12vw;
+        text-align: center;
+        font-size: 4vh; }
+      #main #setup-panel #buttons-wrap #set-button {
+        background-color: green; }
+      #main #setup-panel #buttons-wrap #cancel-button {
+        background-color: red; }
+    #main #setup-panel #time-setter {
+      display: none; }
+    #main #setup-panel #mode-descriptions {
+      display: none; }
+  #main #clocks-panel {
+    position: relative;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
+    #main #clocks-panel .clock-wrap {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      width: 100vh;
+      height: 50vw; }
+      #main #clocks-panel .clock-wrap .clock-sm {
+        position: absolute;
+        top: 7vw;
+        right: 2vw;
+        font-size: 5vw;
+        text-align: center;
+        padding: 0 1vw;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        line-height: 1.2; }
+      #main #clocks-panel .clock-wrap .clock-sm:before {
+        content: 'Opponent';
+        display: block;
+        margin: 1vh 0 0 0;
+        padding: 0;
+        text-align: left;
+        font-size: 2vw; }
+      #main #clocks-panel .clock-wrap .clock-lg {
+        position: absolute;
+        bottom: 12vw;
+        width: 100%;
+        font-size: 11vw;
+        text-align: center; }
+      #main #clocks-panel .clock-wrap .message {
+        position: absolute;
+        bottom: 5vw;
+        width: 90vh;
+        margin: 0 5vh;
+        padding: 1vh 1vh 1.5vh 1vh;
+        font-size: 3vw;
+        text-align: center;
+        display: none; }
+      #main #clocks-panel .clock-wrap .message.shown {
+        display: block; }
+    #main #clocks-panel #clock-p1 {
+      -webkit-transform: rotate(90deg);
+      -webkit-transform-origin: left top;
+      left: 50vw;
+      background: url(../img/white_stripe.png), -webkit-gradient(linear, left bottom, right top, from(black), to(white)); }
+      #main #clocks-panel #clock-p1 .clock-sm {
+        color: white;
+        background-color: black; }
+      #main #clocks-panel #clock-p1 .clock-lg {
+        color: black; }
+      #main #clocks-panel #clock-p1 .message {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5); }
+    #main #clocks-panel #clock-p2 {
+      -webkit-transform: rotate(-90deg);
+      -webkit-transform-origin: right top;
+      right: 50vw;
+      background: url(../img/black_stripe.png), -webkit-gradient(linear, left bottom, right top, from(black), to(white)); }
+      #main #clocks-panel #clock-p2 .clock-sm {
+        color: black;
+        background-color: white; }
+      #main #clocks-panel #clock-p2 .clock-lg {
+        color: white; }
+      #main #clocks-panel #clock-p2 .message {
+        color: black;
+        background-color: rgba(255, 255, 255, 0.5); }
+    #main #clocks-panel .timer-buttons {
+      position: absolute;
+      z-index: 10;
+      top: .5vh;
+      left: 45vw;
+      width: 10vw;
+      height: 99vh; }
+      #main #clocks-panel .timer-buttons .timer-btn {
+        color: white;
+        width: 100%;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9) inset, -2px -2px 4px rgba(0, 0, 0, 0.9) inset; }
+      #main #clocks-panel .timer-buttons #timer-btn {
+        height: 84vh;
+        display: none;
+        margin: 0 0 .5vw 0;
+        background-repeat: no-repeat, no-repeat;
+        background-position: top right, bottom left;
+        background-size: 200%, 200%; }
+      #main #clocks-panel .timer-buttons #timer-btn.start {
+        background-color: green;
+        display: block;
+        background-image: url(../img/start.png), url(../img/start.png); }
+      #main #clocks-panel .timer-buttons #timer-btn.pause {
+        background-color: red;
+        display: block;
+        background-image: url(../img/pause.png), url(../img/pause.png); }
+      #main #clocks-panel .timer-buttons #timer-btn.resume {
+        background-color: #add8e6;
+        display: block;
+        background-image: url(../img/resume.png), url(../img/resume.png); }
+      #main #clocks-panel .timer-buttons #setup-btn {
+        height: 14vh;
+        background-color: blue;
+        background-image: url(../img/setup.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: 50% 48%; }
+
+#main.setup-visible #setup-panel, #main.setup-visible #clocks-panel {
+  animation: setup-visible 0.3s;
+  -moz-animation: setup-visible 0.3s;
+  -webkit-animation: setup-visible 0.3s;
+  animation-fill-mode: forwards;
+  /* this makes sure that after animation is done we remain at the last keyframe value */
+  -moz-animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards; }
+
+#main.clocks-visible #setup-panel, #main.clocks-visible #clocks-panel {
+  animation: clocks-visible 0.3s;
+  -moz-animation: clocks-visible 0.3s;
+  -webkit-animation: clocks-visible 0.3s;
+  animation-fill-mode: forwards;
+  /* this makes sure that after animation is done we remain at the last keyframe value */
+  -moz-animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards; }

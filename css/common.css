@@ -1,0 +1,44 @@
+.clearfix:after {
+  clear: both; }
+
+@keyframes setup-visible {
+  0% {
+    top: -100%; }
+
+  100% {
+    top: 0%; } }
+
+@-moz-keyframes setup-visible {
+  0% {
+    top: -100%; }
+
+  100% {
+    top: 0%; } }
+
+@-webkit-keyframes setup-visible {
+  0% {
+    top: -100%; }
+
+  100% {
+    top: 0%; } }
+
+@keyframes clocks-visible {
+  0% {
+    top: 0%; }
+
+  100% {
+    top: -100%; } }
+
+@-moz-keyframes clocks-visible {
+  0% {
+    top: 0%; }
+
+  100% {
+    top: -100%; } }
+
+@-webkit-keyframes clocks-visible {
+  0% {
+    top: 0%; }
+
+  100% {
+    top: -100%; } }

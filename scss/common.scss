@@ -1,0 +1,94 @@
+@import "ceaser-easings.scss";
+
+$portfolio-light: #CFDEC7;
+$portfolio-dark: #699857;
+$info-light: #BAC8C6;
+$info-dark: #2E504C;
+$contact-light: #CDB1B2;
+$contact-dark: #661D20;
+
+$sans_face: 'Open Sans', sans-serif;
+
+$max319: "only screen and (max-width : 319px)";
+$min320_max479: "only screen and (min-width : 320px) and (max-width : 479px)";
+$max479: "only screen and (max-width : 479px)";
+$min480: "only screen and (min-width : 480px)";
+$min480_max767: "only screen and (min-width : 480px) and (max-width : 767px)";
+$min768: "only screen and (min-width : 768px)";
+$min768_max1023: "only screen and (min-width : 768px) and (max-width : 1023px)";
+$min1024: "only screen and (min-width : 1024px)";
+$landscape: "only screen and (orientation : landscape)";
+$portrait: "only screen and (orientation : portrait)";
+//ex: @media #{$max479}
+
+%translateZ {
+  -webkit-transform: translatez(0);
+  -moz-transform: translatez(0);
+  -ms-transform: translatez(0);
+  -o-transform: translatez(0);
+  transform: translatez(0);
+}
+
+%unselectable {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+}
+
+.clearfix:after {
+  clear:both;
+}
+
+@keyframes setup-visible {
+  0% {
+	top: -100%;
+  }
+  100% {
+	top: 0%;
+  }
+}
+
+@-moz-keyframes setup-visible {
+  0% {
+	top: -100%;
+  }
+  100% {
+	top: 0%;
+  }
+}
+
+@-webkit-keyframes setup-visible {
+  0% {
+	top: -100%;
+  }
+  100% {
+	top: 0%;
+  }
+}
+
+@keyframes clocks-visible {
+  0% {
+	top: 0%;
+  }
+  100% {
+	top: -100%;
+  }
+}
+
+@-moz-keyframes clocks-visible {
+  0% {
+	top: 0%;
+  }
+  100% {
+	top: -100%;
+  }
+}
+
+@-webkit-keyframes clocks-visible {
+  0% {
+	top: 0%;
+  }
+  100% {
+	top: -100%;
+  }
+}
