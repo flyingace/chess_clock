@@ -5,15 +5,15 @@ define(['backbone', 'jquery', 'underscore'],
             events: {
             },
 
-            initialize: function () {
-                _.bindAll(this, 'updateTime');
+            initialize: function (options) {
+                _.bindAll(this, 'updateTime', 'onTimeUp');
 
-                this.el = this.options.el;
-                this.model = this.options.model;
-                this.settings = this.options.settings;
+                this.el = options.el;
+                this.model = options.model;
+                this.settings = options.settings;
 
-                this.model.on('change:remainingTime', this.updateTime);
-                this.model.on('change:timeIsUp', this.onTimeUp);
+                this.listenTo(this.model, 'change:remainingTime', this.updateTime);
+                this.listenTo(this.model, 'change:timeIsUp', this.onTimeUp);
             },
 
             render: function () {
@@ -24,10 +24,17 @@ define(['backbone', 'jquery', 'underscore'],
 
             updateTime: function () {
                 var HHMMSS = this.model.get('remainingTime');
-                console.log(HHMMSS);
+//                console.log(HHMMSS);
 
                 $(this.el).html(HHMMSS);
+            },
+
+            onTimeUp: function () {
+                if (this.model.get('timeIsUp')) {
+                    $(this.el).addClass('inOvertime');
+                }
             }
+
         });
         return Clock_View;
     });

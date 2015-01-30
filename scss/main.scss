@@ -1,5 +1,8 @@
+@import 'reset.scss';
 @import 'common.scss';
 @import 'fonts.scss';
+
+//@import 'ceaser-easings.scss';
 
 * {
   -webkit-box-sizing: border-box;
@@ -25,7 +28,7 @@ body {
 }
 
 #main {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   margin: 0 auto 0 auto;
@@ -33,10 +36,10 @@ body {
 
   #setup-panel {
     position: relative;
-    top: -100%;
+    top: 0%;
     width: 100%;
     height: 100%;
-    background: url('../img/white_stripe.png'), linear-gradient(to right,  #000000 0%,#8c8c8c 65%,#ffffff 100%);
+    background: url('../img/white_stripe.png'), linear-gradient(to right, #000000 0%, #8c8c8c 65%, #ffffff 100%);
     @extend %translateZ;
 
     h1 {
@@ -50,7 +53,6 @@ body {
       height: 12vh;
       margin: 0;
       padding: .7vh 0 0 0;
-
     }
 
     h3 {
@@ -99,11 +101,13 @@ body {
         }
 
         input[type=number] {
+          font-family: 'monologue_black_ssiblack';
           font-size: 15vh;
           text-align: center;
           width: 15vw;
           height: 20vh;
           border: none;
+          padding: 0;
           background: none;
         }
 
@@ -151,7 +155,6 @@ body {
 
         select {
           width: 19.2vw;
-          -webkit-appearance: none;
           font-family: inherit;
           border-radius: 0;
           border: 0;
@@ -159,6 +162,12 @@ body {
           padding: 0 .5vw;
           margin: 0;
           font-size: 2.5vw;
+          background-color: rgba(255, 255, 255, .5);
+          -webkit-appearance: none;
+        }
+
+        option {
+          border-bottom: 1px solid black;
         }
       }
 
@@ -183,8 +192,10 @@ body {
         font-family: "fontello";
         font-style: normal;
         font-weight: normal;
-        speak: none;
+        line-height: 0;
         font-size: 2.5vw;
+        background: none;
+        speak: none;
         display: inline-block;
         text-decoration: inherit;
         width: 1em;
@@ -208,9 +219,9 @@ body {
     }
 
     #buttons-wrap {
-      height: 19vh;
+      height: 18vh;
       clear: left;
-      padding: 0 3vw 3vw 3vw;
+      padding: 1vh 4vw 3vw 3vw;
 
       .setup-button {
         border-radius: 3px;
@@ -218,22 +229,42 @@ body {
         -webkit-border-radius: 3px;
         cursor: pointer;
         float: left;
-        margin: 5px;
-        padding: 1.5vh 0 0 0;
-        min-height: 32px;
-        min-width: 68px;
-        height: 8vh;
-        width: 12vw;
+        margin: 0 5px;
+        padding: 0 1vh;
+        min-height: 8vh;
+        min-width: 18vh;
         text-align: center;
         font-size: 4vh;
+        line-height: 8vh;
       }
 
       #set-button {
         background-color: green;
+        margin-left: 0;
       }
 
-      #cancel-button {
+      #resume-button {
         background-color: red;
+
+        &.disabled {
+          background-color: rgba(255,0,0,.5);
+          pointer-events: none;
+          color: rgba(0,0,0,.25);
+          }
+      }
+
+      #info-button {
+        width: 8vh;
+        height: 8vh;
+        padding: 2vh 0;
+        float: right;
+        background: rgba(255,255,255,.15);
+        text-align: center;
+        box-shadow: inset 0 0 0 6px rgba(0,0,0, .6);
+
+        img {
+          height: 100%;
+        }
       }
     }
 
@@ -245,6 +276,74 @@ body {
       display: none;
     }
   }
+
+#overlay-mask {
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(50, 75, 75, .75);
+  display: none;
+
+  &.shown {
+    display: block;
+  }
+
+  #info-wrapper {
+    position: absolute;
+    z-index: 550;
+    top: 10vh;
+    left: 10vw;
+    width: 80vw;
+    max-height: 80vh;
+    padding: 5vh 7vw;
+    -webkit-border-radius: 5vh;
+    background-color: white;
+    color: black;
+    box-shadow: 5px 5px 5px;
+
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    #info-content {
+      overflow-y: scroll;
+      max-height: 70vh;
+      padding-right: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    h3 {
+      font-size: 200%;
+      margin: 2vh 0 1.25vh;
+    }
+
+    dl {
+      margin: 0 0 1vh;
+      dt {
+        font-size: 150%;
+      }
+
+      dd {
+        margin-bottom: 1.25vh;
+        font-size: 125%;
+      }
+    }
+
+    p {
+      font-size: 125%;
+      margin: 0 0 1.25vh;
+    }
+
+
+
+
+  }
+}
 
   #clocks-panel {
     position: relative;
@@ -290,15 +389,25 @@ body {
         width: 100%;
         font-size: 11vw;
         text-align: center;
-        //font-weight: 700;
+        text-shadow: rgba(0, 0, 0, .5) 3px 3px 5px;
+      }
+
+      .clock-lg.active {
+        background: url('../img/stop_watch.png') no-repeat 15% 50%;
+      }
+
+      .clock-lg.inOvertime {
+        color: red;
       }
 
       .message {
         position: absolute;
         bottom: 5vw;
         width: 90vh;
+        height: 6.5vh;
+        line-height: 6.5vh;
         margin: 0 5vh;
-        padding: 1vh 1vh 1.5vh 1vh;
+//        padding: 1vh 1vh 1.5vh 1vh;
         font-size: 3vw;
         text-align: center;
         display: none;
@@ -310,44 +419,38 @@ body {
     }
 
     #clock-p1 {
+      color: black;
       -webkit-transform: rotate(90deg);
       -webkit-transform-origin: left top;
       left: 50vw;
-      background: url(../img/white_stripe.png), -webkit-gradient(linear, left bottom, right top, from(#000000), to(#FFFFFF));
+      background: url('../img/white_stripe.png'), -webkit-gradient(linear, left bottom, right top, from(#000000), to(#FFFFFF));
 
       .clock-sm {
         color: white;
         background-color: black;
       }
 
-      .clock-lg {
-        color: black;
-      }
-
       .message {
         color: white;
-        background-color: rgba(0,0,0,.5);
+        background-color: rgba(0, 0, 0, .5);
       }
     }
 
     #clock-p2 {
+      color: white;
       -webkit-transform: rotate(-90deg);
       -webkit-transform-origin: right top;
       right: 50vw;
-      background: url(../img/black_stripe.png), -webkit-gradient(linear, left bottom, right top, from(#000000), to(#FFFFFF));
+      background: url('../img/black_stripe.png'), -webkit-gradient(linear, left bottom, right top, from(#000000), to(#FFFFFF));
 
       .clock-sm {
         color: black;
         background-color: white;
       }
 
-      .clock-lg {
-        color: white;
-      }
-
       .message {
         color: black;
-        background-color: rgba(255,255,255,.5);
+        background-color: rgba(255, 255, 255, .5);
       }
     }
 
@@ -379,39 +482,44 @@ body {
       #timer-btn.start {
         background-color: green;
         display: block;
-        background-image: url(../img/start.png), url(../img/start.png);
+        background-image: url('../img/start.png'), url('../img/start.png');
       }
 
       #timer-btn.pause {
         background-color: red;
         display: block;
-        background-image: url(../img/pause.png), url(../img/pause.png);
+        background-image: url('../img/pause.png'), url('../img/pause.png');
+      }
+
+      #timer-btn.ended {
+        background-color: red;
+        display: block;
+        background-image: url('../img/ended_bk.png'), url('../img/ended_bk.png');
       }
 
       #timer-btn.resume {
         background-color: #add8e6;
         display: block;
-        background-image: url(../img/resume.png), url(../img/resume.png);
+        background-image: url('../img/resume.png'), url('../img/resume.png');
       }
 
       #setup-btn {
         height: 14vh;
         background-color: blue;
-        background-image: url(../img/setup.png);
+        background-image: url('../img/setup.png');
         background-repeat: no-repeat;
         background-size: 100%;
-        background-position: 50% 48%;
+        background-position: 50% 50%;
       }
     }
-
   }
 }
 
 #main.setup-visible {
   #setup-panel, #clocks-panel {
-    animation: setup-visible 0.3s;
-    -moz-animation: setup-visible 0.3s;
-    -webkit-animation: setup-visible 0.3s;
+    animation: setup-visible 0.5s;
+    -moz-animation: setup-visible 0.5s;
+    -webkit-animation: setup-visible 0.5s;
     animation-fill-mode: forwards; /* this makes sure that after animation is done we remain at the last keyframe value */
     -moz-animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
@@ -420,9 +528,9 @@ body {
 
 #main.clocks-visible {
   #setup-panel, #clocks-panel {
-    animation: clocks-visible 0.3s;
-    -moz-animation: clocks-visible 0.3s;
-    -webkit-animation: clocks-visible 0.3s;
+    animation: clocks-visible 0.5s;
+    -moz-animation: clocks-visible 0.5s;
+    -webkit-animation: clocks-visible 0.5s;
     animation-fill-mode: forwards; /* this makes sure that after animation is done we remain at the last keyframe value */
     -moz-animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;

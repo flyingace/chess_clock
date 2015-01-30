@@ -8,11 +8,11 @@ define(['backbone', 'jquery', 'underscore', 'models/clockModels/Clock_Model'],
                 var startTime, currentTime, newTime, self = this,
                     direction;
 
-                startTime = new Date().getTime();
+                startTime = Date.now();
 
                 this.clockTick = window.setInterval(function () {
                     self.mSecsRemaining = self.get('remainingMSecs');
-                    currentTime = new Date().getTime();
+                    currentTime = Date.now();
                     //if the player goes into overtime, change the clock's direction by multiplying by -1
                     direction = (self.get('timeIsUp')) ? -1 : 1;
                     self.mSecsRemaining -= ((currentTime - startTime) * direction);
@@ -28,9 +28,9 @@ define(['backbone', 'jquery', 'underscore', 'models/clockModels/Clock_Model'],
 
             isTimeUp: function (mSecs) {
                 if (mSecs <= 100) {
+                    this.stopClock();
                     this.set('remainingMSecs', 0);
                     this.set('timeIsUp', true);
-                    this.stopClock();
                     this.startClock();
                 }
             }

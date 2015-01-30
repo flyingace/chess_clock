@@ -8,10 +8,10 @@ define(['backbone', 'jquery', 'underscore', 'text!templates/setupTemplates/modeT
 
             },
 
-            initialize: function () {
+            initialize: function (options) {
                 _.bindAll(this, 'onModeMenuChange');
 
-                this.model = this.options.model;
+                this.model = options.model;
             },
 
             render: function () {

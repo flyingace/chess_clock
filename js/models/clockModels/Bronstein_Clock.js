@@ -1,10 +1,10 @@
 define(['backbone', 'jquery', 'underscore', 'models/clockModels/Clock_Model'],
-    function(Backbone, $, _, Clock_Model) {
+    function (Backbone, $, _, Clock_Model) {
 
         var Bronstein_Clock = Clock_Model.extend({
 
             //if Bronstein, additional time is added at the end of the turn, equal to the duration of the turn, unless it exceeds the amount of additional time specified
-            stopClock: function() {
+            stopClock: function () {
 
                 var addlTime, timeToAdd, adjustedMSecs, adjustedHHMMSS;
 
@@ -21,7 +21,7 @@ define(['backbone', 'jquery', 'underscore', 'models/clockModels/Clock_Model'],
                 adjustedMSecs = this.mSecsRemaining + timeToAdd;
                 adjustedHHMMSS = this.mSecsToHMS(adjustedMSecs);
 
-                this.set({'remainingMSecs': adjustedMSecs, 'remainingTime':adjustedHHMMSS});
+                this.set({'remainingMSecs': adjustedMSecs, 'remainingTime': adjustedHHMMSS});
             }
         });
 

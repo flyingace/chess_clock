@@ -13,21 +13,23 @@ define(['backbone', 'jquery', 'underscore', 'models/clockModels/SuddenDeath_Cloc
                 'playTapSound': true,
                 'playTimeUpSound': true,
                 'p1StartTime': null,
-                'p2StartTime': null
+                'p2StartTime': null,
+                'overlayVisible': false
             },
 
             initialize: function () {
-                _.bindAll(this, 'slidePanels', 'onGameModeChange', 'toggleActivePlayer', 'onClockStateChange', 'onAdditionalTimeChange', 'onP1StartTimeChange', 'onP2StartTimeChange');
+                _.bindAll(this, 'slidePanels', 'onGameModeChange', 'toggleActivePlayer', 'onClockStateChange', 'onAdditionalTimeChange', 'onP1StartTimeChange', 'onP2StartTimeChange', 'toggleInfoOverlay');
 
                 this.onGameModeChange();
 
-                this.on('change:activePanel', this.slidePanels);
-                this.on('change:gameMode', this.onGameModeChange);
-                this.on('change:activePlayer', this.toggleActivePlayer);
-                this.on('change:clockState', this.onClockStateChange);
-                this.on('change:additionalTime', this.onAdditionalTimeChange);
-                this.on('change:p1StartTime', this.onP1StartTimeChange);
-                this.on('change:p2StartTime', this.onP2StartTimeChange);
+                this.listenTo(this,'change:activePanel', this.slidePanels);
+                this.listenTo(this,'change:gameMode', this.onGameModeChange);
+                this.listenTo(this,'change:activePlayer', this.toggleActivePlayer);
+                this.listenTo(this,'change:clockState', this.onClockStateChange);
+                this.listenTo(this,'change:additionalTime', this.onAdditionalTimeChange);
+                this.listenTo(this,'change:p1StartTime', this.onP1StartTimeChange);
+                this.listenTo(this,'change:p2StartTime', this.onP2StartTimeChange);
+                this.listenTo(this,'change:overlayVisible', this.toggleInfoOverlay);
             },
 
             slidePanels: function () {
@@ -42,7 +44,7 @@ define(['backbone', 'jquery', 'underscore', 'models/clockModels/SuddenDeath_Cloc
 
             onGameModeChange: function () {
                 var clockModelToUse;
-                console.log(this.get('gameMode'));
+//                console.log(this.get('gameMode'));
 
                 switch (this.get('gameMode')) {
                     case 'Sudden_Death':
@@ -62,19 +64,20 @@ define(['backbone', 'jquery', 'underscore', 'models/clockModels/SuddenDeath_Cloc
                         break;
                     default:
                         clockModelToUse = SuddenDeath_Clock;
-                        console.log('default');
+                        console.log('default clock model selected');
                         break;
+                }
+                if (this.get('clock_model_p1')) {
+                    this.get('clock_model_p1').destroy({success: function() {
+                        console.log('destroyed1');
+                    }});
+                    this.get('clock_model_p2').destroy({success: function() {
+                        console.log('destroyed2');
+                    }});
                 }
 
                 this.set({'clock_model_p1': new clockModelToUse(), 'clock_model_p2': new clockModelToUse()});
-
-
-                //TODO: If you're going to reset the clock model, you're going to have to re-render the clocks view.
-                //you should consider not rendering the clocks view until set has been hit, and re-rendering it whenever is hit again.
-                //Why do I have to re-render the clocks view? Wouldn't it be more efficient to just reset the timers and clear any messages?
-                //Actually probably not, because you'll also want to be accounting for a possible change in game mode too.
-                //I'm not sure that changing the game mode requires a re-render. It just requires that the views are updated with the new models.
-
+                this.onAdditionalTimeChange();
             },
 
             toggleActivePlayer: function () {
@@ -105,6 +108,7 @@ define(['backbone', 'jquery', 'underscore', 'models/clockModels/SuddenDeath_Cloc
                         this.get(modelToUpdate).resumeClock();
                         break;
                     case 'stopped':
+                    case 'ended':
                         this.get(modelToUpdate).stopClock();
                         break;
                     default:
@@ -132,6 +136,15 @@ define(['backbone', 'jquery', 'underscore', 'models/clockModels/SuddenDeath_Cloc
                 var additionalTime = this.get('additionalTime');
                 this.get('clock_model_p1').set('additionalTime', additionalTime);
                 this.get('clock_model_p2').set('additionalTime', additionalTime);
+            },
+
+            toggleInfoOverlay: function() {
+                var $overlayMask = $('#overlay-mask');
+                if (this.get('overlayVisible') === true) {
+                    $overlayMask.addClass('shown');
+                } else {
+                    $overlayMask.removeClass('shown');
+                }
             }
         });
 

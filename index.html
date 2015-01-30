@@ -3,13 +3,23 @@
 <head>
     <meta charset="utf-8"/>
     <title></title>
+    <meta name="format-detection" content="telephone=no"/>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, maximum-scale=1"/>
-
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi"/>
+    <!--width=device-width, height=device-height"/>-->
     <link rel="stylesheet" href="css/main.css"/>
 
     <script>
         var CC = CC || {};
+    </script>
+    <script type="application/javascript">
+        document.addEventListener('deviceready', function() {
+            setTimeout(function(){
+                navigator.splashscreen.hide();
+            }, 500);
+        })
     </script>
 
     <script data-main="js/main" src="js/libs/require/require.js"></script>
@@ -22,5 +32,6 @@
 </div>
 <audio id="click-sound" src="audio/click1.mp3" preload="auto"></audio>
 <audio id="timeUp-sound" src="audio/ExpiredBell.mp3" preload="auto"></audio>
+<script src="cordova.js"></script>
 </body>
 </html>

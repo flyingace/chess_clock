@@ -5,10 +5,10 @@ define(['backbone', 'jquery', 'underscore', 'text!templates/setupTemplates/setBu
             events: {
             },
 
-            initialize: function () {
+            initialize: function (options) {
                 _.bindAll(this);
 
-                this.model = this.options.model;
+                this.model = options.model;
             },
 
             render: function () {

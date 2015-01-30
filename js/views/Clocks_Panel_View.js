@@ -3,7 +3,6 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Player_View', 'text!tem
         var Clocks_Panel_View = Backbone.View.extend({
 
             events: {
-//                'click .clock-wrap': 'playTapSound',
                 'click #timer-btn': 'updateTimerState',
                 'click #setup-btn': 'goToSetupPanel'
             },
@@ -12,15 +11,22 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Player_View', 'text!tem
 
             template: Clocks_Panel_Template,
 
-            initialize: function () {
-                _.bindAll(this, 'updateTimerState', 'resetTimerState', 'goToSetupPanel', 'toggleListeners', 'setP1Active', 'setP2Active', 'playTapSound', 'onTimeUp', 'displayMessages', 'playTimeUpAlert');
+            initialize: function (options) {
+                _.bindAll(this, 'cleanUpPlayerViews', 'updateTimerState', 'resetTimerState', 'goToSetupPanel', 'toggleListeners', 'setP1Active', 'setP2Active', 'toggleActiveClock', 'disableClockListeners', 'playTapSound', 'onTimeUp', 'displayMessages', 'playTimeUpAlert');
 
-                this.model = this.options.model;
+                this.model = options.model;
 
-                this.clickSound = document.getElementById('click-sound');
-                this.timeUpSound = document.getElementById('timeUp-sound');
+                //this is where you need to build out the click-handling-audio methods using
+                //var media = new Media(src, mediaSuccess, [mediaError], [mediaStatus]);
+                //release audio after complete?
+                //load audio into memory?
+                this.clickSound = new Media('audio/click1.wav', null, function(error) {
+                    alert(error.code, error.message);
+                }); //document.getElementById('click-sound');
+                this.timeUpSound = new Media('audio/ExpiredBell.mp3'); //document.getElementById('timeUp-sound');
 
-                this.model.on('change:gameMode', this.render, this);
+
+                this.listenTo(this.model, 'change:gameMode', this.render, this);
 
             },
 
@@ -31,8 +37,10 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Player_View', 'text!tem
                 this.clock_model_p1 = this.model.get('clock_model_p1');
                 this.clock_model_p2 = this.model.get('clock_model_p2');
 
-                this.clock_model_p1.on('change:timeIsUp', this.onTimeUp);
-                this.clock_model_p2.on('change:timeIsUp', this.onTimeUp);
+                this.listenTo(this.clock_model_p1, 'change:timeIsUp', this.onTimeUp);
+                this.listenTo(this.clock_model_p2, 'change:timeIsUp', this.onTimeUp);
+
+                this.cleanUpPlayerViews();
 
                 this.player_view_p1 = new Player_View({el: '#clock-p1', settings: this.model, model_lg: this.clock_model_p1, model_sm: this.clock_model_p2});
                 this.player_view_p2 = new Player_View({el: '#clock-p2', settings: this.model, model_lg: this.clock_model_p2, model_sm: this.clock_model_p1});
@@ -43,26 +51,38 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Player_View', 'text!tem
                 return this;
             },
 
+            cleanUpPlayerViews: function () {
+                if (this.player_view_p1) {
+                    this.player_view_p1.cleanClocks();
+                    this.player_view_p2.cleanClocks();
+                    this.player_view_p1.remove();
+                    this.player_view_p2.remove();
+                }
+            },
+
+            //TODO: Add "ended" button to sequence
             updateTimerState: function () {
                 var $timerBtn = $('#timer-btn'),
-                    add_, remove_, model_;
+                    add_, remove_, state_;
 
-                if ($timerBtn.hasClass('start')) {
+                if ($timerBtn.hasClass('ended')) {
+//                    break;
+                } else if ($timerBtn.hasClass('start')) {
                     remove_ = 'start';
                     add_ = 'pause';
-                    model_ = 'started';
+                    state_ = 'started';
                 } else if ($timerBtn.hasClass('pause')) {
                     remove_ = 'pause';
                     add_ = 'resume';
-                    model_ = 'paused';
+                    state_ = 'paused';
                 } else {
                     remove_ = 'resume';
                     add_ = 'pause';
-                    model_ = 'resumed';
+                    state_ = 'resumed';
                 }
 
                 $timerBtn.removeClass(remove_).addClass(add_);
-                this.model.set('clockState', model_);
+                this.model.set('clockState', state_);
 
                 this.toggleListeners();
             },
@@ -96,28 +116,50 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Player_View', 'text!tem
                 } else if (isTicking) {
                     this.setP2Active();
                 } else {
-                    $('#clock-p1').off();
-                    $('#clock-p2').off();
+                    this.disableClockListeners();
                 }
             },
 
             setP1Active: function () {
                 this.model.set('activePlayer', 'P1');
                 this.playTapSound(); //tap sound will only play if active player's button is tapped
-                $('#clock-p1').on('click', this.setP2Active);
-                $('#clock-p2').off();
+                this.player_view_p1.delegateEvents({'click' : this.setP2Active});
+                this.player_view_p2.undelegateEvents();
+                this.toggleActiveClock('p1')
             },
 
             setP2Active: function () {
                 this.model.set('activePlayer', 'P2');
                 this.playTapSound(); //tap sound will only play if active player's button is tapped
-                $('#clock-p2').on('click', this.setP1Active);
-                $('#clock-p1').off();
+                this.player_view_p2.delegateEvents({'click' : this.setP1Active});
+                this.player_view_p1.undelegateEvents();
+                this.toggleActiveClock('p2')
+            },
+
+            toggleActiveClock: function (activeClock) {
+                console.log('activeClock:' + activeClock);
+                var $p1Large = $('#clock-p1 .clock-lg'),
+                    $p2Large = $('#clock-p2 .clock-lg');
+                if (activeClock === 'p1') {
+                    $p1Large.addClass('active');
+                    $p2Large.removeClass('active');
+                } else if (activeClock === 'p2') {
+                    $p1Large.removeClass('active');
+                    $p2Large.addClass('active');
+                } else {
+                    $p1Large.removeClass('active');
+                    $p2Large.removeClass('active');
+                }
+            },
+
+            disableClockListeners: function () {
+                this.player_view_p1.undelegateEvents();
+                this.player_view_p2.undelegateEvents();
+                this.toggleActiveClock()
             },
 
             playTapSound: function () {
                 if (this.model.get('playTapSound')) {
-                    this.clickSound.load();
                     this.clickSound.play();
                 }
             },
@@ -125,6 +167,15 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Player_View', 'text!tem
             onTimeUp: function () {
                 this.displayMessages();
                 this.playTimeUpAlert();
+                if (this.model.get('gameMode') !== 'Word_Game') {
+                    this.disableClockListeners();
+                    $('#timer-btn').removeClass('start pause resume').addClass('ended');
+                    this.model.set('clockState', 'ended');
+                } else {
+
+                }
+
+//                this.toggleListeners();
             },
 
             displayMessages: function () {
@@ -134,12 +185,15 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Player_View', 'text!tem
                     $p2Message = $('#clock-p2 .message'),
                     activePlayerMsg, inactivePlayerMsg;
 
-                if (gameMode === "Word_Game") {
-                    activePlayerMsg = "You Are In Overtime";
-                    inactivePlayerMsg = "Your Opponent Is In Overtime";
-                } else {
+                if (gameMode !== "Word_Game") {
                     activePlayerMsg = "Your Time Has Expired";
                     inactivePlayerMsg = "Opponent's Time Has Expired";
+                } else if ($p1Message.hasClass('shown')) {
+                    activePlayerMsg = "Both Players Are In Overtime";
+                    inactivePlayerMsg = "Both Players Are In Overtime";
+                } else {
+                    activePlayerMsg = "You Are In Overtime";
+                    inactivePlayerMsg = "Your Opponent Is In Overtime";
                 }
 
                 if (activePlayer === 'P1') {
@@ -155,9 +209,7 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Player_View', 'text!tem
             },
 
             playTimeUpAlert: function () {
-                console.log(this.model.get('playTimeUpSound'));
                 if (this.model.get('playTimeUpSound')) {
-                    this.timeUpSound.load();
                     this.timeUpSound.play();
                 }
             }

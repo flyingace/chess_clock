@@ -1,80 +1,533 @@
-#main #setup-panel, #main #clocks-panel {
-  -webkit-transform: translatez(0);
-  -moz-transform: translatez(0);
-  -ms-transform: translatez(0);
-  -o-transform: translatez(0);
-  transform: translatez(0); }
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 9, ../scss/reset.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
 
+/**
+ * Remove default margin.
+ */
+/* line 19, ../scss/reset.scss */
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+/* line 43, ../scss/reset.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+/* line 55, ../scss/reset.scss */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+/* line 65, ../scss/reset.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+/* line 76, ../scss/reset.scss */
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+/* line 87, ../scss/reset.scss */
+a {
+  background: transparent;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 96, ../scss/reset.scss */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+/* line 107, ../scss/reset.scss */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+/* line 116, ../scss/reset.scss */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+/* line 124, ../scss/reset.scss */
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+/* line 133, ../scss/reset.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+/* line 142, ../scss/reset.scss */
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+/* line 151, ../scss/reset.scss */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+/* line 160, ../scss/reset.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 167, ../scss/reset.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 171, ../scss/reset.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+/* line 182, ../scss/reset.scss */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+/* line 190, ../scss/reset.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+/* line 201, ../scss/reset.scss */
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+/* line 209, ../scss/reset.scss */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+/* line 219, ../scss/reset.scss */
+pre {
+  overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+/* line 230, ../scss/reset.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+/* line 254, ../scss/reset.scss */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+/* line 264, ../scss/reset.scss */
+button {
+  overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+/* line 276, ../scss/reset.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+/* line 291, ../scss/reset.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+/* line 301, ../scss/reset.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+/* line 310, ../scss/reset.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+/* line 320, ../scss/reset.scss */
+input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+/* line 333, ../scss/reset.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+/* line 345, ../scss/reset.scss */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+/* line 355, ../scss/reset.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+/* line 369, ../scss/reset.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+/* line 377, ../scss/reset.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+/* line 388, ../scss/reset.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+/* line 397, ../scss/reset.scss */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+/* line 406, ../scss/reset.scss */
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+/* line 417, ../scss/reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 423, ../scss/reset.scss */
+td,
+th {
+  padding: 0;
+}
+
+/* line 1, ../scss/common.scss */
+#main #setup-panel, #main #clocks-panel {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* line 15, ../scss/common.scss */
 .clearfix:after {
-  clear: both; }
+  clear: both;
+}
 
 @keyframes setup-visible {
+  /* line 20, ../scss/common.scss */
   0% {
-    top: -100%; }
+    transform: translate3d(0, -100%, 0);
+  }
 
+  /* line 23, ../scss/common.scss */
   100% {
-    top: 0%; } }
-
-@-moz-keyframes setup-visible {
-  0% {
-    top: -100%; }
-
-  100% {
-    top: 0%; } }
+    transform: translate3d(0, 0, 0);
+  }
+}
 
 @-webkit-keyframes setup-visible {
+  /* line 29, ../scss/common.scss */
   0% {
-    top: -100%; }
+    -webkit-transform: translate3d(0, -100%, 0);
+  }
 
+  /* line 32, ../scss/common.scss */
   100% {
-    top: 0%; } }
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
 
 @keyframes clocks-visible {
+  /* line 38, ../scss/common.scss */
   0% {
-    top: 0%; }
+    transform: translate3d(0, 0, 0);
+  }
 
+  /* line 41, ../scss/common.scss */
   100% {
-    top: -100%; } }
-
-@-moz-keyframes clocks-visible {
-  0% {
-    top: 0%; }
-
-  100% {
-    top: -100%; } }
+    transform: translate3d(0, -100%, 0);
+  }
+}
 
 @-webkit-keyframes clocks-visible {
+  /* line 47, ../scss/common.scss */
   0% {
-    top: 0%; }
+    -webkit-transform: translate3d(0, 0, 0);
+  }
 
+  /* line 50, ../scss/common.scss */
   100% {
-    top: -100%; } }
+    -webkit-transform: translate3d(0, -100%, 0);
+  }
+}
 
 @font-face {
   font-family: 'monologue_black_ssiblack';
   src: url("../fonts/monologue_black/monologue_black_ssi_black-webfont.eot");
   src: url("../fonts/monologue_black/monologue_black_ssi_black-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/monologue_black/monologue_black_ssi_black-webfont.woff") format("woff"), url("../fonts/monologue_black/monologue_black_ssi_black-webfont.ttf") format("truetype"), url("../fonts/monologue_black/monologue_black_ssi_black-webfont.svg#monologue_black_ssiblack") format("svg");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+}
 
 @font-face {
   font-family: 'fontello';
   src: url("../fonts/fontello/fontello.eot?38336672");
   src: url("../fonts/fontello/fontello.eot?38336672#iefix") format("embedded-opentype"), url("../fonts/fontello/fontello.woff?38336672") format("woff"), url("../fonts/fontello/fontello.ttf?38336672") format("truetype"), url("../fonts/fontello/fontello.svg?38336672#fontello") format("svg");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+}
 
+/* line 7, ../scss/main.scss */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: transparent;
+}
 
+/* line 15, ../scss/main.scss */
 html {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+}
 
+/* line 20, ../scss/main.scss */
 body {
   font-family: 'monologue_black_ssiblack';
   background-color: #EEEEEE;
@@ -82,289 +535,504 @@ body {
   height: 100%;
   overflow: hidden;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
+/* line 30, ../scss/main.scss */
 #main {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   margin: 0 auto 0 auto;
-  overflow: hidden; }
-  #main #setup-panel {
-    position: relative;
-    top: -100%;
-    width: 100%;
-    height: 100%;
-    background: url("../img/white_stripe.png"), linear-gradient(to right, black 0%, #8c8c8c 65%, white 100%); }
-    #main #setup-panel h1 {
-      font-size: 8.5vh;
-      font-weight: normal;
-      color: white;
-      text-align: center;
-      letter-spacing: 2px;
-      background: linear-gradient(to right, rgba(63, 63, 63, 0.5) 0%, rgba(0, 0, 0, 0.75) 30%, rgba(0, 0, 0, 0.75) 70%, rgba(63, 63, 63, 0.5) 100%);
-      width: 100%;
-      height: 12vh;
-      margin: 0;
-      padding: .7vh 0 0 0; }
-    #main #setup-panel h3 {
-      font-size: 6vh;
-      height: 10vh;
-      margin: 0;
-      display: none; }
-    #main #setup-panel #play-times-wrap {
-      width: 100%;
-      height: 44vh;
-      margin: 0 0 2vh 0;
-      overflow: hidden;
-      clear: both; }
-      #main #setup-panel #play-times-wrap .time-display {
-        float: left;
-        width: 45vw;
-        height: 36vh;
-        margin: 4vh 2.5vw;
-        background-color: white; }
-        #main #setup-panel #play-times-wrap .time-display .time-incrementer {
-          float: left;
-          border: none;
-          height: 36vh;
-          width: 15vw; }
-          #main #setup-panel #play-times-wrap .time-display .time-incrementer .increment-button {
-            font-size: 7vh;
-            text-align: center;
-            border-right: 1px solid black;
-            height: 8vh;
-            margin: 0;
-            padding: 0;
-            -webkit-user-select: none; }
-        #main #setup-panel #play-times-wrap .time-display .time-incrementer:last-of-type .increment-button {
-          border: none; }
-        #main #setup-panel #play-times-wrap .time-display input[type=number] {
-          font-size: 15vh;
-          text-align: center;
-          width: 15vw;
-          height: 20vh;
-          border: none;
-          background: none; }
-        #main #setup-panel #play-times-wrap .time-display input[type=number]::-webkit-inner-spin-button,
-        #main #setup-panel #play-times-wrap .time-display input[type=number]::-webkit-outer-spin-button {
-          -webkit-appearance: none;
-          margin: 0; }
-      #main #setup-panel #play-times-wrap #p1.time-display {
-        margin-right: 2vw; }
-      #main #setup-panel #play-times-wrap #p2 {
-        margin-left: 2vw;
-        background-color: black;
-        color: white; }
-        #main #setup-panel #play-times-wrap #p2 .increment-button {
-          border-color: white; }
-        #main #setup-panel #play-times-wrap #p2 input[type=number] {
-          color: white; }
-    #main #setup-panel #mode-wrap {
-      width: 42vw;
-      height: 25vh;
-      float: left;
-      font-size: 2.5vw;
-      padding: 0 2vw 0 3vw; }
-      #main #setup-panel #mode-wrap .menu-wrapper {
-        margin-bottom: 5vh; }
-        #main #setup-panel #mode-wrap .menu-wrapper label {
-          display: inline-block;
-          width: 16vw;
-          text-align: right; }
-        #main #setup-panel #mode-wrap .menu-wrapper select {
-          width: 19.2vw;
-          -webkit-appearance: none;
-          font-family: inherit;
-          border-radius: 0;
-          border: 0;
-          outline: 0;
-          padding: 0 .5vw;
-          margin: 0;
-          font-size: 2.5vw; }
-      #main #setup-panel #mode-wrap .hidden {
-        display: none; }
-    #main #setup-panel #settings-wrap {
-      height: 25vh;
-      float: left;
-      font-size: 2.5vw;
-      padding: 0 3vw 0 2vw; }
-      #main #setup-panel #settings-wrap label {
-        display: inline-block; }
-      #main #setup-panel #settings-wrap input[type="checkbox"] {
-        font-family: "fontello";
-        font-style: normal;
-        font-weight: normal;
-        speak: none;
-        font-size: 2.5vw;
-        display: inline-block;
-        text-decoration: inherit;
-        width: 1em;
-        margin: 0 .2em 3.5vh 0;
-        text-align: left;
-        -webkit-appearance: none;
-        /* For safety - reset parent styles, that can break glyph codes*/
-        font-variant: normal;
-        text-transform: none;
-        border: 0;
-        outline: 0; }
-      #main #setup-panel #settings-wrap input[type="checkbox"]:before {
-        content: '\e804'; }
-      #main #setup-panel #settings-wrap input[type="checkbox"]:checked:before {
-        content: '\e801'; }
-    #main #setup-panel #buttons-wrap {
-      height: 19vh;
-      clear: left;
-      padding: 0 3vw 3vw 3vw; }
-      #main #setup-panel #buttons-wrap .setup-button {
-        border-radius: 3px;
-        -moz-border-radius: 3px;
-        -webkit-border-radius: 3px;
-        cursor: pointer;
-        float: left;
-        margin: 5px;
-        padding: 1.5vh 0 0 0;
-        min-height: 32px;
-        min-width: 68px;
-        height: 8vh;
-        width: 12vw;
-        text-align: center;
-        font-size: 4vh; }
-      #main #setup-panel #buttons-wrap #set-button {
-        background-color: green; }
-      #main #setup-panel #buttons-wrap #cancel-button {
-        background-color: red; }
-    #main #setup-panel #time-setter {
-      display: none; }
-    #main #setup-panel #mode-descriptions {
-      display: none; }
-  #main #clocks-panel {
-    position: relative;
-    top: 0%;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; }
-    #main #clocks-panel .clock-wrap {
-      position: absolute;
-      z-index: 5;
-      top: 0;
-      width: 100vh;
-      height: 50vw; }
-      #main #clocks-panel .clock-wrap .clock-sm {
-        position: absolute;
-        top: 7vw;
-        right: 2vw;
-        font-size: 5vw;
-        text-align: center;
-        padding: 0 1vw;
-        border-radius: 5px;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        line-height: 1.2; }
-      #main #clocks-panel .clock-wrap .clock-sm:before {
-        content: 'Opponent';
-        display: block;
-        margin: 1vh 0 0 0;
-        padding: 0;
-        text-align: left;
-        font-size: 2vw; }
-      #main #clocks-panel .clock-wrap .clock-lg {
-        position: absolute;
-        bottom: 12vw;
-        width: 100%;
-        font-size: 11vw;
-        text-align: center; }
-      #main #clocks-panel .clock-wrap .message {
-        position: absolute;
-        bottom: 5vw;
-        width: 90vh;
-        margin: 0 5vh;
-        padding: 1vh 1vh 1.5vh 1vh;
-        font-size: 3vw;
-        text-align: center;
-        display: none; }
-      #main #clocks-panel .clock-wrap .message.shown {
-        display: block; }
-    #main #clocks-panel #clock-p1 {
-      -webkit-transform: rotate(90deg);
-      -webkit-transform-origin: left top;
-      left: 50vw;
-      background: url(../img/white_stripe.png), -webkit-gradient(linear, left bottom, right top, from(black), to(white)); }
-      #main #clocks-panel #clock-p1 .clock-sm {
-        color: white;
-        background-color: black; }
-      #main #clocks-panel #clock-p1 .clock-lg {
-        color: black; }
-      #main #clocks-panel #clock-p1 .message {
-        color: white;
-        background-color: rgba(0, 0, 0, 0.5); }
-    #main #clocks-panel #clock-p2 {
-      -webkit-transform: rotate(-90deg);
-      -webkit-transform-origin: right top;
-      right: 50vw;
-      background: url(../img/black_stripe.png), -webkit-gradient(linear, left bottom, right top, from(black), to(white)); }
-      #main #clocks-panel #clock-p2 .clock-sm {
-        color: black;
-        background-color: white; }
-      #main #clocks-panel #clock-p2 .clock-lg {
-        color: white; }
-      #main #clocks-panel #clock-p2 .message {
-        color: black;
-        background-color: rgba(255, 255, 255, 0.5); }
-    #main #clocks-panel .timer-buttons {
-      position: absolute;
-      z-index: 10;
-      top: .5vh;
-      left: 45vw;
-      width: 10vw;
-      height: 99vh; }
-      #main #clocks-panel .timer-buttons .timer-btn {
-        color: white;
-        width: 100%;
-        border-radius: 10px;
-        -webkit-border-radius: 10px;
-        box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9) inset, -2px -2px 4px rgba(0, 0, 0, 0.9) inset; }
-      #main #clocks-panel .timer-buttons #timer-btn {
-        height: 84vh;
-        display: none;
-        margin: 0 0 .5vw 0;
-        background-repeat: no-repeat, no-repeat;
-        background-position: top right, bottom left;
-        background-size: 200%, 200%; }
-      #main #clocks-panel .timer-buttons #timer-btn.start {
-        background-color: green;
-        display: block;
-        background-image: url(../img/start.png), url(../img/start.png); }
-      #main #clocks-panel .timer-buttons #timer-btn.pause {
-        background-color: red;
-        display: block;
-        background-image: url(../img/pause.png), url(../img/pause.png); }
-      #main #clocks-panel .timer-buttons #timer-btn.resume {
-        background-color: #add8e6;
-        display: block;
-        background-image: url(../img/resume.png), url(../img/resume.png); }
-      #main #clocks-panel .timer-buttons #setup-btn {
-        height: 14vh;
-        background-color: blue;
-        background-image: url(../img/setup.png);
-        background-repeat: no-repeat;
-        background-size: 100%;
-        background-position: 50% 48%; }
+  overflow: hidden;
+}
+/* line 37, ../scss/main.scss */
+#main #setup-panel {
+  position: relative;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  background: url("../img/white_stripe.png"), linear-gradient(to right, #000000 0%, #8c8c8c 65%, #ffffff 100%);
+}
+/* line 45, ../scss/main.scss */
+#main #setup-panel h1 {
+  font-size: 8.5vh;
+  font-weight: normal;
+  color: white;
+  text-align: center;
+  letter-spacing: 2px;
+  background: linear-gradient(to right, rgba(63, 63, 63, 0.5) 0%, rgba(0, 0, 0, 0.75) 30%, rgba(0, 0, 0, 0.75) 70%, rgba(63, 63, 63, 0.5) 100%);
+  width: 100%;
+  height: 12vh;
+  margin: 0;
+  padding: .7vh 0 0 0;
+}
+/* line 58, ../scss/main.scss */
+#main #setup-panel h3 {
+  font-size: 6vh;
+  height: 10vh;
+  margin: 0;
+  display: none;
+}
+/* line 65, ../scss/main.scss */
+#main #setup-panel #play-times-wrap {
+  width: 100%;
+  height: 44vh;
+  margin: 0 0 2vh 0;
+  overflow: hidden;
+  clear: both;
+}
+/* line 72, ../scss/main.scss */
+#main #setup-panel #play-times-wrap .time-display {
+  float: left;
+  width: 45vw;
+  height: 36vh;
+  margin: 4vh 2.5vw;
+  background-color: white;
+}
+/* line 79, ../scss/main.scss */
+#main #setup-panel #play-times-wrap .time-display .time-incrementer {
+  float: left;
+  border: none;
+  height: 36vh;
+  width: 15vw;
+}
+/* line 85, ../scss/main.scss */
+#main #setup-panel #play-times-wrap .time-display .time-incrementer .increment-button {
+  font-size: 7vh;
+  text-align: center;
+  border-right: 1px solid black;
+  height: 8vh;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+}
+/* line 98, ../scss/main.scss */
+#main #setup-panel #play-times-wrap .time-display .time-incrementer:last-of-type .increment-button {
+  border: none;
+}
+/* line 103, ../scss/main.scss */
+#main #setup-panel #play-times-wrap .time-display input[type=number] {
+  font-family: 'monologue_black_ssiblack';
+  font-size: 15vh;
+  text-align: center;
+  width: 15vw;
+  height: 20vh;
+  border: none;
+  padding: 0;
+  background: none;
+}
+/* line 115, ../scss/main.scss */
+#main #setup-panel #play-times-wrap .time-display input[type=number]::-webkit-inner-spin-button,
+#main #setup-panel #play-times-wrap .time-display input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* line 121, ../scss/main.scss */
+#main #setup-panel #play-times-wrap #p1.time-display {
+  margin-right: 2vw;
+}
+/* line 125, ../scss/main.scss */
+#main #setup-panel #play-times-wrap #p2 {
+  margin-left: 2vw;
+  background-color: black;
+  color: white;
+}
+/* line 130, ../scss/main.scss */
+#main #setup-panel #play-times-wrap #p2 .increment-button {
+  border-color: white;
+}
+/* line 134, ../scss/main.scss */
+#main #setup-panel #play-times-wrap #p2 input[type=number] {
+  color: white;
+}
+/* line 140, ../scss/main.scss */
+#main #setup-panel #mode-wrap {
+  width: 42vw;
+  height: 25vh;
+  float: left;
+  font-size: 2.5vw;
+  padding: 0 2vw 0 3vw;
+}
+/* line 147, ../scss/main.scss */
+#main #setup-panel #mode-wrap .menu-wrapper {
+  margin-bottom: 5vh;
+}
+/* line 150, ../scss/main.scss */
+#main #setup-panel #mode-wrap .menu-wrapper label {
+  display: inline-block;
+  width: 16vw;
+  text-align: right;
+}
+/* line 156, ../scss/main.scss */
+#main #setup-panel #mode-wrap .menu-wrapper select {
+  width: 19.2vw;
+  font-family: inherit;
+  border-radius: 0;
+  border: 0;
+  outline: 0;
+  padding: 0 .5vw;
+  margin: 0;
+  font-size: 2.5vw;
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-appearance: none;
+}
+/* line 169, ../scss/main.scss */
+#main #setup-panel #mode-wrap .menu-wrapper option {
+  border-bottom: 1px solid black;
+}
+/* line 174, ../scss/main.scss */
+#main #setup-panel #mode-wrap .hidden {
+  display: none;
+}
+/* line 180, ../scss/main.scss */
+#main #setup-panel #settings-wrap {
+  height: 25vh;
+  float: left;
+  font-size: 2.5vw;
+  padding: 0 3vw 0 2vw;
+}
+/* line 187, ../scss/main.scss */
+#main #setup-panel #settings-wrap label {
+  display: inline-block;
+}
+/* line 191, ../scss/main.scss */
+#main #setup-panel #settings-wrap input[type="checkbox"] {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 0;
+  font-size: 2.5vw;
+  background: none;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin: 0 .2em 3.5vh 0;
+  text-align: left;
+  -webkit-appearance: none;
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  border: 0;
+  outline: 0;
+}
+/* line 213, ../scss/main.scss */
+#main #setup-panel #settings-wrap input[type="checkbox"]:before {
+  content: '\e804';
+}
+/* line 216, ../scss/main.scss */
+#main #setup-panel #settings-wrap input[type="checkbox"]:checked:before {
+  content: '\e801';
+}
+/* line 221, ../scss/main.scss */
+#main #setup-panel #buttons-wrap {
+  height: 18vh;
+  clear: left;
+  padding: 1vh 4vw 3vw 3vw;
+}
+/* line 226, ../scss/main.scss */
+#main #setup-panel #buttons-wrap .setup-button {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  cursor: pointer;
+  float: left;
+  margin: 0 5px;
+  padding: 0 1vh;
+  min-height: 8vh;
+  min-width: 18vh;
+  text-align: center;
+  font-size: 4vh;
+  line-height: 8vh;
+}
+/* line 241, ../scss/main.scss */
+#main #setup-panel #buttons-wrap #set-button {
+  background-color: green;
+  margin-left: 0;
+}
+/* line 246, ../scss/main.scss */
+#main #setup-panel #buttons-wrap #resume-button {
+  background-color: red;
+}
+/* line 249, ../scss/main.scss */
+#main #setup-panel #buttons-wrap #resume-button.disabled {
+  background-color: rgba(255, 0, 0, 0.5);
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.25);
+}
+/* line 256, ../scss/main.scss */
+#main #setup-panel #buttons-wrap #info-button {
+  width: 8vh;
+  height: 8vh;
+  padding: 2vh 0;
+  float: right;
+  background: rgba(255, 255, 255, 0.15);
+  text-align: center;
+  box-shadow: inset 0 0 0 6px rgba(0, 0, 0, 0.6);
+}
+/* line 265, ../scss/main.scss */
+#main #setup-panel #buttons-wrap #info-button img {
+  height: 100%;
+}
+/* line 271, ../scss/main.scss */
+#main #setup-panel #time-setter {
+  display: none;
+}
+/* line 275, ../scss/main.scss */
+#main #setup-panel #mode-descriptions {
+  display: none;
+}
+/* line 280, ../scss/main.scss */
+#main #overlay-mask {
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(50, 75, 75, 0.75);
+  display: none;
+}
+/* line 290, ../scss/main.scss */
+#main #overlay-mask.shown {
+  display: block;
+}
+/* line 294, ../scss/main.scss */
+#main #overlay-mask #info-wrapper {
+  position: absolute;
+  z-index: 550;
+  top: 10vh;
+  left: 10vw;
+  width: 80vw;
+  max-height: 80vh;
+  padding: 5vh 7vw;
+  -webkit-border-radius: 5vh;
+  background-color: white;
+  color: black;
+  box-shadow: 5px 5px 5px;
+}
+/* line 307, ../scss/main.scss */
+#main #overlay-mask #info-wrapper .close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+/* line 313, ../scss/main.scss */
+#main #overlay-mask #info-wrapper #info-content {
+  overflow-y: scroll;
+  max-height: 70vh;
+  padding-right: 10px;
+  -webkit-overflow-scrolling: touch;
+}
+/* line 320, ../scss/main.scss */
+#main #overlay-mask #info-wrapper h3 {
+  font-size: 200%;
+  margin: 2vh 0 1.25vh;
+}
+/* line 325, ../scss/main.scss */
+#main #overlay-mask #info-wrapper dl {
+  margin: 0 0 1vh;
+}
+/* line 327, ../scss/main.scss */
+#main #overlay-mask #info-wrapper dl dt {
+  font-size: 150%;
+}
+/* line 331, ../scss/main.scss */
+#main #overlay-mask #info-wrapper dl dd {
+  margin-bottom: 1.25vh;
+  font-size: 125%;
+}
+/* line 337, ../scss/main.scss */
+#main #overlay-mask #info-wrapper p {
+  font-size: 125%;
+  margin: 0 0 1.25vh;
+}
+/* line 348, ../scss/main.scss */
+#main #clocks-panel {
+  position: relative;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* line 357, ../scss/main.scss */
+#main #clocks-panel .clock-wrap {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  width: 100vh;
+  height: 50vw;
+}
+/* line 364, ../scss/main.scss */
+#main #clocks-panel .clock-wrap .clock-sm {
+  position: absolute;
+  top: 7vw;
+  right: 2vw;
+  font-size: 5vw;
+  text-align: center;
+  padding: 0 1vw;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  line-height: 1.2;
+}
+/* line 377, ../scss/main.scss */
+#main #clocks-panel .clock-wrap .clock-sm:before {
+  content: 'Opponent';
+  display: block;
+  margin: 1vh 0 0 0;
+  padding: 0;
+  text-align: left;
+  font-size: 2vw;
+}
+/* line 386, ../scss/main.scss */
+#main #clocks-panel .clock-wrap .clock-lg {
+  position: absolute;
+  bottom: 12vw;
+  width: 100%;
+  font-size: 11vw;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.5) 3px 3px 5px;
+}
+/* line 395, ../scss/main.scss */
+#main #clocks-panel .clock-wrap .clock-lg.active {
+  background: url("../img/stop_watch.png") no-repeat 15% 50%;
+}
+/* line 399, ../scss/main.scss */
+#main #clocks-panel .clock-wrap .clock-lg.inOvertime {
+  color: red;
+}
+/* line 403, ../scss/main.scss */
+#main #clocks-panel .clock-wrap .message {
+  position: absolute;
+  bottom: 5vw;
+  width: 90vh;
+  height: 6.5vh;
+  line-height: 6.5vh;
+  margin: 0 5vh;
+  font-size: 3vw;
+  text-align: center;
+  display: none;
+}
+/* line 416, ../scss/main.scss */
+#main #clocks-panel .clock-wrap .message.shown {
+  display: block;
+}
+/* line 421, ../scss/main.scss */
+#main #clocks-panel #clock-p1 {
+  color: black;
+  -webkit-transform: rotate(90deg);
+  -webkit-transform-origin: left top;
+  left: 50vw;
+  background: url("../img/white_stripe.png"), -webkit-gradient(linear, left bottom, right top, from(black), to(white));
+}
+/* line 428, ../scss/main.scss */
+#main #clocks-panel #clock-p1 .clock-sm {
+  color: white;
+  background-color: black;
+}
+/* line 433, ../scss/main.scss */
+#main #clocks-panel #clock-p1 .message {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* line 439, ../scss/main.scss */
+#main #clocks-panel #clock-p2 {
+  color: white;
+  -webkit-transform: rotate(-90deg);
+  -webkit-transform-origin: right top;
+  right: 50vw;
+  background: url("../img/black_stripe.png"), -webkit-gradient(linear, left bottom, right top, from(black), to(white));
+}
+/* line 446, ../scss/main.scss */
+#main #clocks-panel #clock-p2 .clock-sm {
+  color: black;
+  background-color: white;
+}
+/* line 451, ../scss/main.scss */
+#main #clocks-panel #clock-p2 .message {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+/* line 457, ../scss/main.scss */
+#main #clocks-panel .timer-buttons {
+  position: absolute;
+  z-index: 10;
+  top: .5vh;
+  left: 45vw;
+  width: 10vw;
+  height: 99vh;
+}
+/* line 465, ../scss/main.scss */
+#main #clocks-panel .timer-buttons .timer-btn {
+  color: white;
+  width: 100%;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9) inset, -2px -2px 4px rgba(0, 0, 0, 0.9) inset;
+}
+/* line 473, ../scss/main.scss */
+#main #clocks-panel .timer-buttons #timer-btn {
+  height: 84vh;
+  display: none;
+  margin: 0 0 .5vw 0;
+  background-repeat: no-repeat, no-repeat;
+  background-position: top right, bottom left;
+  background-size: 200%, 200%;
+}
+/* line 482, ../scss/main.scss */
+#main #clocks-panel .timer-buttons #timer-btn.start {
+  background-color: green;
+  display: block;
+  background-image: url("../img/start.png"), url("../img/start.png");
+}
+/* line 488, ../scss/main.scss */
+#main #clocks-panel .timer-buttons #timer-btn.pause {
+  background-color: red;
+  display: block;
+  background-image: url("../img/pause.png"), url("../img/pause.png");
+}
+/* line 494, ../scss/main.scss */
+#main #clocks-panel .timer-buttons #timer-btn.ended {
+  background-color: red;
+  display: block;
+  background-image: url("../img/ended_bk.png"), url("../img/ended_bk.png");
+}
+/* line 500, ../scss/main.scss */
+#main #clocks-panel .timer-buttons #timer-btn.resume {
+  background-color: #add8e6;
+  display: block;
+  background-image: url("../img/resume.png"), url("../img/resume.png");
+}
+/* line 506, ../scss/main.scss */
+#main #clocks-panel .timer-buttons #setup-btn {
+  height: 14vh;
+  background-color: blue;
+  background-image: url("../img/setup.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 50% 50%;
+}
 
+/* line 519, ../scss/main.scss */
 #main.setup-visible #setup-panel, #main.setup-visible #clocks-panel {
-  animation: setup-visible 0.3s;
-  -moz-animation: setup-visible 0.3s;
-  -webkit-animation: setup-visible 0.3s;
+  animation: setup-visible 0.5s;
+  -moz-animation: setup-visible 0.5s;
+  -webkit-animation: setup-visible 0.5s;
   animation-fill-mode: forwards;
   /* this makes sure that after animation is done we remain at the last keyframe value */
   -moz-animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards; }
+  -webkit-animation-fill-mode: forwards;
+}
 
+/* line 530, ../scss/main.scss */
 #main.clocks-visible #setup-panel, #main.clocks-visible #clocks-panel {
-  animation: clocks-visible 0.3s;
-  -moz-animation: clocks-visible 0.3s;
-  -webkit-animation: clocks-visible 0.3s;
+  animation: clocks-visible 0.5s;
+  -moz-animation: clocks-visible 0.5s;
+  -webkit-animation: clocks-visible 0.5s;
   animation-fill-mode: forwards;
   /* this makes sure that after animation is done we remain at the last keyframe value */
   -moz-animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards; }
+  -webkit-animation-fill-mode: forwards;
+}
