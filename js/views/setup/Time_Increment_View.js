@@ -8,19 +8,20 @@ define(['jquery', 'backbone', 'underscore', 'text!templates/setupTemplates/timeI
             events: {
                 'click .plus': 'onPlusClick',
                 'click .minus': 'onMinusClick',
+                'focus input[type=number]': 'onNumberFieldFocus',
                 'blur input[type=number]': 'onFieldValueInput'
             },
 
             className: 'time-incrementer',
 
-            initialize: function () {
-                _.bindAll(this, 'render', 'onPlusClick', 'onMinusClick', 'onFieldValueInput', 'validateFieldValue', 'addLeadingZero');
+            initialize: function (options) {
+                _.bindAll(this, 'render', 'onPlusClick', 'onMinusClick', 'onNumberFieldFocus', 'onFieldValueInput', 'validateFieldValue', 'addZeroes');
 
                 //Time Increment View is expecting min, max, value & id to be passed to it.
-                this.min = this.options.min;
-                this.max = this.options.max;
-                this.value = this.options.value;
-                this.fieldId = this.options.fieldId;
+                this.min = options.min;
+                this.max = options.max;
+                this.value = options.value;
+                this.fieldId = options.fieldId;
                 this.fieldType = this.fieldId.slice(2, 4); //returns 'HH', 'MM' or 'SS'
             },
 
@@ -59,6 +60,10 @@ define(['jquery', 'backbone', 'underscore', 'text!templates/setupTemplates/timeI
                 this.validateFieldValue(fieldValue, fieldsToValidate);
             },
 
+            onNumberFieldFocus: function(evt) {
+                evt.target.setSelectionRange(0,2);
+            },
+
             onFieldValueInput: function () {
                 var $targetField = $('#' + this.fieldId),
                     $pairedFields = $("input[id$=" + this.fieldType + "]"),
@@ -80,14 +85,22 @@ define(['jquery', 'backbone', 'underscore', 'text!templates/setupTemplates/timeI
                         fieldValue = self.max;
                     }
 
-                    fieldValue = self.addLeadingZero(fieldValue);
+                    fieldValue = self.addZeroes(fieldValue);
                     field.value = fieldValue;
                 });
             },
 
-            addLeadingZero: function (unit) {
+            addZeroes: function (unit) {
                 var leadingZero = "0",
-                    displayUnit = (unit.toString().length < 2) ? leadingZero.concat(unit.toString()) : unit.toString();
+                    displayUnit;
+
+                if (unit.toString() === "NaN" || unit.toString().length === 0) {
+                    displayUnit = '00';
+                } else if (unit.toString().length < 2) {
+                    displayUnit = leadingZero.concat(unit.toString())
+                } else {
+                    displayUnit = unit.toString();
+                }
 
                 return displayUnit;
             }

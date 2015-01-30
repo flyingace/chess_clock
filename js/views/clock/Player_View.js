@@ -7,14 +7,14 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Clock_View', 'views/clo
 
             template: Player_View_Template,
 
-            initialize: function () {
-                _.bindAll(this);
+            initialize: function (options) {
+                _.bindAll(this, 'cleanClocks');
 
-                this.el = this.options.el;
+                this.el = options.el;
 
-                var model_lg = this.options.model_lg,
-                    model_sm = this.options.model_sm,
-                    settings = this.options.settings;
+                var model_lg = options.model_lg,
+                    model_sm = options.model_sm,
+                    settings = options.settings;
 
                 this.lg_clock = new Clock_View({el: this.el + ' .clock-lg', model: model_lg, settings: settings});
                 this.sm_clock = new Clock_View({el: this.el + ' .clock-sm', model: model_sm});
@@ -27,6 +27,12 @@ define(['backbone', 'jquery', 'underscore', 'views/clock/Clock_View', 'views/clo
                 this.sm_clock.render().el;
 
                 return this;
+            },
+
+            cleanClocks: function() {
+                this.stopListening();
+                this.lg_clock.remove();
+                this.sm_clock.remove();
             }
         });
         return Player_View;

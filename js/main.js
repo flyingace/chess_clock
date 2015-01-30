@@ -9,10 +9,13 @@ require.config({
         json2: 'libs/json2',
 
         //Timer script (allows for pause & resume
-        timer: 'libs/timer',
+//        timer: 'libs/timer',
 
         // Require.js plugins
         text: 'libs/require/text',
+
+        //fastclick.js (removes 300ms delay)
+        fastclick: 'libs/fastclick',
 
         // Just a short cut so we can put our html outside the js dir
         templates: '../templates'
@@ -25,7 +28,12 @@ require.config({
         'backbone': {
             deps: [ 'underscore', 'jquery', 'json2'],
             exports: 'Backbone'
+        },
+        'fastclick': {
+            exports: 'FastClick'
         }
+
+
     }
 });
 

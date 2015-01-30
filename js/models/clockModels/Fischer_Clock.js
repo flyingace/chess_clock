@@ -10,11 +10,11 @@ define(['backbone', 'jquery', 'underscore','models/clockModels/Clock_Model'],
                 this.mSecsRemaining = this.get('remainingMSecs') + this.get('additionalTime');
                 this.set('remainingMSecs', this.mSecsRemaining);
 
-                startTime = new Date().getTime();
+                startTime = Date.now();
 
                 this.clockTick = window.setInterval(function () {
                     self.mSecsRemaining = self.get('remainingMSecs');
-                    currentTime = new Date().getTime();
+                    currentTime = Date.now();
                     self.mSecsRemaining -= (currentTime - startTime);
                     newTime = self.mSecsToHMS(self.mSecsRemaining);
                     self.set('remainingTime', newTime);
