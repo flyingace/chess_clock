@@ -1,5 +1,5 @@
 .idea/*
 .sass_cache/*
-.idea/
+.idea
 .sass-cache
-.idea/workspace.xml
+materials
